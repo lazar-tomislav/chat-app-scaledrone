@@ -11,6 +11,7 @@ import randomName from "./components/Users/RandomName";
 import randomAvatar from "./components/Users/RandomAvatar";
 
 import Container from "react-bootstrap/Container";
+import {getScaledroneChannelId} from "./config/env-helper";
 
 function App() {
 
@@ -45,7 +46,9 @@ const [showImagePopup, setShowImagePopup] = useState(true);
 const popupImageUrl = "./assets/images/anychat.png";
 
 useEffect(() => {
-	const newDrone = new window.Scaledrone("wiCb9iY1E4xejxZe", {
+	const channelID = getScaledroneChannelId();
+
+	const newDrone = new window.Scaledrone(channelID, {
 	data: state.member,
 	});
 
