@@ -1,33 +1,36 @@
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
+import {useEffect, useState} from "react";
+import {UserAuthentication} from "../features/user-authentication";
 
 export default function Navigation() {
-return (
-	<Navbar bg="dark" data-bs-theme="dark">
-		<Container>
-			<Navbar.Brand
-				style={{
-					backgroundColor: "#f47c6d",
-					borderRadius: "5px",
-					padding: "5px",
-				}}
-				href="#home"
-				>
-				<img
-					alt="logo"
-					src="assets/images/pngegg.png"
-					width="30"
-					height="30"
-					className="d-inline-block align-top"
-				/>{" "}
-				AnyChat
-			</Navbar.Brand>
-			<Nav className="justify-content-end">
-				<Nav.Link href="https://react.dev/">React</Nav.Link>
-				<Nav.Link href="https://www.scaledrone.com/">Scaledrone</Nav.Link>
-			</Nav>
-		</Container>
-	</Navbar>
-);
+	const [currentUsername, setUsername] = useState('');
+
+	useEffect(() => {
+		const username = UserAuthentication.getUsername();
+		setUsername(username);
+	}, []);
+
+
+	return (
+		<Navbar bg="primary" variant="dark">
+			<Container>
+				<div style={{display: "flex", alignItems: "center"}}>
+					<img
+						alt="logo"
+						src="/logo.png"
+						width="30"
+						height="30"
+						className="d-inline-block align-top"
+					/>
+					<Navbar.Brand className={"appName"}>Welcome {currentUsername ?? "Anonymous"}</Navbar.Brand>
+				</div>
+				<Nav className="ml-auto">
+					{/*TODO: Insert nav link here in the future for profile, logout..*/}
+					{/*<Nav.Link href="#"></Nav.Link>*/}
+				</Nav>
+			</Container>
+		</Navbar>
+	);
 }

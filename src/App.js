@@ -12,9 +12,10 @@ import randomAvatar from "./components/Users/RandomAvatar";
 
 import Container from "react-bootstrap/Container";
 import {getScaledroneChannelId} from "./config/env-helper";
+import {UserAuthentication} from "./features/user-authentication";
 
 function App() {
-
+	const [username,setUsername] = useState('');
 	const initialState = {
 		text: [],
 		member: {
@@ -41,13 +42,15 @@ function App() {
 		setState((prevState) => ({...prevState, activeUsers}));
 	};
 
-	const [showImagePopup, setShowImagePopup] = useState(true);
-
 	const popupImageUrl = "./assets/images/anychat.png";
 
 	useEffect(() => {
 		const channelID = getScaledroneChannelId();
 
+		setUsername(UserAuthentication.getUsername());
+
+
+		console.log('channelID:',channelID);
 		const newDrone = new window.Scaledrone(channelID, {
 			data: state.member,
 		});
@@ -75,14 +78,9 @@ function App() {
 			updateActiveUsers(members);
 		});
 
-		const timer = setTimeout(() => {
-			setShowImagePopup(false);
-		}, 3000);
-
 		return () => {
 			room.unsubscribe();
 			newDrone.close();
-			clearTimeout(timer);
 		};
 	}, []);
 
@@ -107,7 +105,6 @@ function App() {
 					)}
 					updateActiveUsers={updateActiveUsers}
 				/>
-				{showImagePopup && <PopUp imageUrl={popupImageUrl}/>}
 			</div>
 			<Footer/>
 		</Container>
