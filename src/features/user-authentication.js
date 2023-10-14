@@ -24,11 +24,14 @@ export const UserAuthentication = {
 	/**
 	 * @returns {string} username
 	 */
+	signOut() {
+		this.setUsername('');
+	},
 	getUsername() {
 		let username = localStorage.getItem(LS_USERNAME_KEY);
-		// if(username){
-		// 	username = UserAuthentication.promptUserToEnterName()
-		// }
+		if(!username){
+			username = UserAuthentication.promptUserToEnterName()
+		}
 		return username;
 	},
 

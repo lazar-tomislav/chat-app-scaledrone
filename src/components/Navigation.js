@@ -13,6 +13,16 @@ export default function Navigation() {
 	}, []);
 
 
+
+	const signOut = ()=>{
+		setUsername('');
+		UserAuthentication.signOut();
+		//retry the prompt because user needs to be authenticated here
+		const username = UserAuthentication.getUsername();
+		setUsername(username);
+	}
+
+
 	return (
 		<Navbar bg="primary" variant="dark">
 			<Container>
@@ -28,7 +38,9 @@ export default function Navigation() {
 				</div>
 				<Nav className="ml-auto">
 					{/*TODO: Insert nav link here in the future for profile, logout..*/}
-					{/*<Nav.Link href="#"></Nav.Link>*/}
+					{currentUsername&&(
+						<Nav.Link className={"text-white"} onClick={()=>signOut()}>Log Out</Nav.Link>
+					)}
 				</Nav>
 			</Container>
 		</Navbar>

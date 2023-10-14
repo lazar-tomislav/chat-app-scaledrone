@@ -7,7 +7,6 @@ import Footer from "./components/Footer";
 import PopUp from "./components/PopUp";
 
 import ActiveUsers from "./components/Users/ActiveUsers";
-import randomName from "./components/Users/RandomName";
 import randomAvatar from "./components/Users/RandomAvatar";
 
 import Container from "react-bootstrap/Container";
@@ -15,11 +14,10 @@ import {getScaledroneChannelId} from "./config/env-helper";
 import {UserAuthentication} from "./features/user-authentication";
 
 function App() {
-	const [username,setUsername] = useState('');
 	const initialState = {
 		text: [],
 		member: {
-			username: randomName(),
+			username: UserAuthentication.getUsername(),
 			avatar: randomAvatar(),
 		},
 		activeUsers: [],
@@ -46,9 +44,6 @@ function App() {
 
 	useEffect(() => {
 		const channelID = getScaledroneChannelId();
-
-		setUsername(UserAuthentication.getUsername());
-
 
 		console.log('channelID:',channelID);
 		const newDrone = new window.Scaledrone(channelID, {
