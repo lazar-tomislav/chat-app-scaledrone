@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import Navigation from "./components/Navigation";
+import Header from "./components/Header";
 import FooterComponent from "./components/Footer";
 
 import Container from "react-bootstrap/Container";
@@ -11,7 +11,7 @@ function App() {
 	return (
 		<div className="App app-wrapper">
 			<Container fluid="lg" style={{backgroundColor: "whitesmoke"}}>
-				<Navigation/>
+				<Header/>
 
 				<ChatIndex/>
 				<FooterComponent/>

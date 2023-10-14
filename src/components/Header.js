@@ -4,7 +4,7 @@ import Nav from "react-bootstrap/Nav";
 import {useEffect, useState} from "react";
 import {UserAuthentication} from "../features/user-authentication";
 
-export default function Navigation() {
+export default function Header() {
 	const [currentUsername, setUsername] = useState('');
 
 	useEffect(() => {
