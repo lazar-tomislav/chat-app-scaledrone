@@ -141,3 +141,6 @@ input {
 .appName{
 	margin-left: 1rem;
 }
+.app-wrapper >div.container-lg{
+	height: 100vh;
+}

@@ -13,6 +13,8 @@ import randomAvatar from "./components/Users/RandomAvatar";
 import Container from "react-bootstrap/Container";
 import {getScaledroneChannelId} from "./config/env-helper";
 import {UserAuthentication} from "./features/user-authentication";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
 
 function App() {
 	const initialState = {
@@ -85,22 +87,29 @@ function App() {
 	};
 
 	return (
-		<Container fluid="lg" style={{backgroundColor: "#2c2c2c"}}>
-			<div className="App">
-				<Navigation/>
-				<div className="text-container">
-					<Messages text={state.text} currentUser={state.member}/>
-				</div>
-				<Input onSendMessage={onSendMessage}/>
-				<ActiveUsers
-					activeUsers={Array.from(uniqueActiveUsers).map((username) =>
-						state.activeUsers.find((user) => user.username === username)
-					)}
-					updateActiveUsers={updateActiveUsers}
-				/>
-			</div>
-			<Footer/>
-		</Container>
+		<div className="App app-wrapper">
+			<Container fluid="lg" style={{ backgroundColor: "#2c2c2c" }}>
+			<Navigation />
+				<Row style={{paddingTop:"1rem"}}>
+					<Col xs={10}>
+						<div className="text-container">
+							<Messages text={state.text} currentUser={state.member} />
+
+						</div>
+							<Input onSendMessage={onSendMessage}/>
+					</Col>
+					<Col xs={2}>
+						<ActiveUsers
+							activeUsers={Array.from(uniqueActiveUsers).map((username) =>
+								state.activeUsers.find((user) => user.username === username)
+							)}
+							updateActiveUsers={updateActiveUsers}
+						/>
+					</Col>
+				</Row>
+			</Container>
+			<Footer />
+		</div>
 	);
 }
 
