@@ -1,7 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
-import "bootstrap/dist/css/bootstrap.min.css";
-import Modal from "react-bootstrap/Modal";
 
 export default function Input({ onSendMessage }) {
 	const [text, setText] = useState("");
@@ -16,6 +14,9 @@ export default function Input({ onSendMessage }) {
 
 		if (text.trim() === "") {
 			setShowAlert(true);
+			setTimeout(() => {
+				setShowAlert(false); // Hide alert after 3 seconds
+			}, 3000); // 3000 milliseconds (3 seconds)
 		} else {
 			onSendMessage(text);
 			setText("");
@@ -23,41 +24,28 @@ export default function Input({ onSendMessage }) {
 		}
 	};
 
-	const hideAlert = () => {
-		setShowAlert(false);
-	};
-
 	return (
-		<div className="input">
-			<form onSubmit={handleSubmit}>
+		<div className="custom-input">
+			<form onSubmit={handleSubmit} style={{ margin: 0, maxWidth: "inherit" }}>
 				<div className="input-group mb-3">
 					<input
 						onChange={handleChange}
 						value={text}
 						type="text"
-						className="form-control"
-						placeholder="Enter your message and press ENTER"
+						className="form-control custom-form-control"
+						placeholder="Type your message here..."
 						autoFocus
 					/>
-					<Button variant="success" type="input">
+					<Button variant="info" type="submit" className="custom-button">
 						Send
 					</Button>
 				</div>
 			</form>
-
-			<Modal show={showAlert} onHide={hideAlert} centered>
-				<Modal.Header closeButton>
-					<Modal.Title>Alert</Modal.Title>
-				</Modal.Header>
-				<Modal.Body>
+			{showAlert && (
+				<div className="alert alert-danger custom-alert">
 					Please enter a message before sending.
-				</Modal.Body>
-				<Modal.Footer>
-					<Button variant="secondary" onClick={hideAlert}>
-						Close
-					</Button>
-				</Modal.Footer>
-			</Modal>
+				</div>
+			)}
 		</div>
 	);
 }
