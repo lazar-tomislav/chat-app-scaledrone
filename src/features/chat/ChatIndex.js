@@ -84,7 +84,6 @@ function ChatIndex() {
 			<Col xs={9}>
 				<div className="text-container">
 					<Messages text={state.text} currentUser={state.member}/>
-
 				</div>
 				<Input onSendMessage={onSendMessage}/>
 			</Col>
