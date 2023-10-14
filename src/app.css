@@ -99,13 +99,13 @@ App {
     max-width: 400px;
     margin: 0;
     border-radius: 12px;
-    background-color: #0474ab;
+    background-color: #1a313c;
     color: white;
     display: inline-block;
 }
 
 .current-user > .message-content .text {
-    background-color: #f47c6d;
+    background-color: #2648d7;
 }
 
 form {
