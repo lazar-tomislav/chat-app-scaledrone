@@ -88,15 +88,15 @@ function App() {
 
 	return (
 		<div className="App app-wrapper">
-			<Container fluid="lg" style={{ backgroundColor: "#2c2c2c" }}>
-			<Navigation />
-				<Row style={{paddingTop:"1rem"}}>
+			<Container fluid="lg" style={{backgroundColor: "#2c2c2c"}}>
+				<Navigation/>
+				<Row style={{paddingTop: "1rem"}}>
 					<Col xs={9}>
 						<div className="text-container">
-							<Messages text={state.text} currentUser={state.member} />
+							<Messages text={state.text} currentUser={state.member}/>
 
 						</div>
-							<Input onSendMessage={onSendMessage}/>
+						<Input onSendMessage={onSendMessage}/>
 					</Col>
 					<Col xs={3}>
 						<ActiveUsers
@@ -107,8 +107,8 @@ function App() {
 						/>
 					</Col>
 				</Row>
+			<Footer/>
 			</Container>
-			<Footer />
 		</div>
 	);
 }
