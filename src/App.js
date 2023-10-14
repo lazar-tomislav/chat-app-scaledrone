@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 import Messages from "./components/Messages";
 import Input from "./components/Input";
@@ -40,12 +41,9 @@ function App() {
 		setState((prevState) => ({...prevState, activeUsers}));
 	};
 
-	const popupImageUrl = "./assets/images/anychat.png";
-
 	useEffect(() => {
 		const channelID = getScaledroneChannelId();
 
-		console.log('channelID:',channelID);
 		const newDrone = new window.Scaledrone(channelID, {
 			data: state.member,
 		});

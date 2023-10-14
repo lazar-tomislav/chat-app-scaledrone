@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Alert from "./Alert";
+import Modal from "react-bootstrap/Modal";
 
 export default function Input({ onSendMessage }) {
 	const [text, setText] = useState("");
@@ -23,26 +23,41 @@ export default function Input({ onSendMessage }) {
 		}
 	};
 
+	const hideAlert = () => {
+		setShowAlert(false);
+	};
+
 	return (
 		<div className="input">
 			<form onSubmit={handleSubmit}>
-				<input
-					onChange={handleChange}
-					value={text}
-					type="text"
-					placeholder="Enter your message and press ENTER"
-					autoFocus
-				/>
-				<Button variant="success" type="input">
-					Send
-				</Button>{" "}
-				{showAlert && (
-					<div>
-						<Alert />
-					</div>
-				)}
+				<div className="input-group mb-3">
+					<input
+						onChange={handleChange}
+						value={text}
+						type="text"
+						className="form-control"
+						placeholder="Enter your message and press ENTER"
+						autoFocus
+					/>
+					<Button variant="success" type="input">
+						Send
+					</Button>
+				</div>
 			</form>
+
+			<Modal show={showAlert} onHide={hideAlert} centered>
+				<Modal.Header closeButton>
+					<Modal.Title>Alert</Modal.Title>
+				</Modal.Header>
+				<Modal.Body>
+					Please enter a message before sending.
+				</Modal.Body>
+				<Modal.Footer>
+					<Button variant="secondary" onClick={hideAlert}>
+						Close
+					</Button>
+				</Modal.Footer>
+			</Modal>
 		</div>
 	);
 }
-
