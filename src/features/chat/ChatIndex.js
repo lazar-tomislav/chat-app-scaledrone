@@ -8,16 +8,16 @@ import Messages from "../../components/Messages";
 import ActiveUsers from "../../components/Users/ActiveUsers";
 import SendMessageInput from "../../components/SendMessageInput";
 
-function ChatIndex() {
-	const initialState = {
-		text: [],
-		member: {
-			username: UserAuthentication.getUsername(),
-			avatar: UserAuthentication.getUserAvatar(),
-		},
-		activeUsers: [],
-	};
+const initialState = {
+	text: [],
+	member: {
+		username: UserAuthentication.getUsername(),
+		avatar: UserAuthentication.getUserAvatar(),
+	},
+	activeUsers: [],
+};
 
+function ChatIndex() {
 	const [state, setState] = useState(initialState);
 	const [drone, setDrone] = useState(null);
 
@@ -35,6 +35,19 @@ function ChatIndex() {
 		setState((prevState) => ({...prevState, activeUsers}));
 	};
 
+	const onChatOpenAddNewMember = (newDrone) => {
+		const member = {...state.member, avatar: UserAuthentication.getUserAvatar()};
+		member.id = newDrone.clientId;
+		setState((prevState) => ({...prevState, member}));
+	}
+
+	const loadMessages = (data, member) => {
+		setState((prevState) => {
+			const newMessages = [...prevState.text, {member, text: data}];
+			return {...prevState, text: newMessages};
+		});
+	}
+
 	useEffect(() => {
 		const channelID = getScaledroneChannelId();
 
@@ -49,16 +62,11 @@ function ChatIndex() {
 			if (error) {
 				return console.error(error);
 			}
-			const member = {...state.member, avatar: UserAuthentication.getUserAvatar()};
-			member.id = newDrone.clientId;
-			setState((prevState) => ({...prevState, member}));
+			onChatOpenAddNewMember(newDrone);
 		});
 
 		room.on("data", (data, member) => {
-			setState((prevState) => {
-				const newMessages = [...prevState.text, {member, text: data}];
-				return {...prevState, text: newMessages};
-			});
+			loadMessages(data, member);
 		});
 
 		room.on("members", (members) => {
