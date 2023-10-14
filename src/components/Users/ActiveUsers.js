@@ -10,7 +10,7 @@ const ActiveUsers = ({activeUsers}) => {
 			fluid
 			className="active-users text-center p-0 m-0"
 		>
-			<h2 style={{color: "white"}}>Users</h2>
+			<h2>Users</h2>
 			<Row className="g-4">
 				{activeUsers.map((user, index) => (
 					<Col key={index} xs={12} style={{padding: 0,marginRight:"10px",paddingRight:"10px"}}>

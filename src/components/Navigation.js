@@ -24,7 +24,7 @@ export default function Navigation() {
 
 
 	return (
-		<Navbar bg="primary" variant="dark">
+		<Navbar style={{background:"#4e4e4e"}} variant="dark">
 			<Container>
 				<div style={{display: "flex", alignItems: "center"}}>
 					<img

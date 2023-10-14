@@ -10,7 +10,7 @@ import ChatIndex from "./features/chat/ChatIndex";
 function App() {
 	return (
 		<div className="App app-wrapper">
-			<Container fluid="lg" style={{backgroundColor: "#2c2c2c"}}>
+			<Container fluid="lg" style={{backgroundColor: "whitesmoke"}}>
 				<Navigation/>
 
 				<ChatIndex/>
