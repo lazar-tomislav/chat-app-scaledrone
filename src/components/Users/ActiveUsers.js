@@ -8,7 +8,7 @@ const ActiveUsers = ({ activeUsers }) => {
     return (
         <Container
             fluid
-            className="active-users text-center"
+            className="active-users text-center p-0 m-0"
         >
             <h2 style={{color:"white"}}>Users</h2>
             <Row className="g-4">
@@ -16,14 +16,12 @@ const ActiveUsers = ({ activeUsers }) => {
                     <Col key={index} xs={12} style={{padding:0}}>
                         <Card
                             style={{
-                                backgroundColor: "#0474ab",
                                 borderRadius: "5px",
-                                padding: "5px",
                             }}
                             className="card-small text-center"
                         >
                             <div className="d-flex">
-                                <div className="p-2">
+                                <div style={{alignItems:"center",display:"flex"}}>
                                     <Card.Img
                                         className="avatar img-fluid"
                                         variant="top"
@@ -31,13 +29,11 @@ const ActiveUsers = ({ activeUsers }) => {
                                         alt={user.username}
                                     />
                                 </div>
-                                <div className="p-2">
                                     <Card.Body>
-                                        <Card.Title className="card-title">
+                                        <Card.Title className="card-title line-clamp-1" >
                                             {user.username}
                                         </Card.Title>
                                     </Card.Body>
-                                </div>
                             </div>
                         </Card>
                     </Col>
