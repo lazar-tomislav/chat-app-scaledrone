@@ -3,18 +3,17 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import {UserAuthentication} from "../user-authentication";
-import randomAvatar from "../../components/Users/RandomAvatar";
 import {getScaledroneChannelId} from "../../config/env-helper";
 import Messages from "../../components/Messages";
 import ActiveUsers from "../../components/Users/ActiveUsers";
-import Input from "../../components/Input";
+import SendMessageInput from "../../components/SendMessageInput";
 
 function ChatIndex() {
 	const initialState = {
 		text: [],
 		member: {
 			username: UserAuthentication.getUsername(),
-			avatar: randomAvatar(),
+			avatar: UserAuthentication.getUserAvatar(),
 		},
 		activeUsers: [],
 	};
@@ -50,7 +49,7 @@ function ChatIndex() {
 			if (error) {
 				return console.error(error);
 			}
-			const member = {...state.member, avatar: randomAvatar()};
+			const member = {...state.member, avatar: UserAuthentication.getUserAvatar()};
 			member.id = newDrone.clientId;
 			setState((prevState) => ({...prevState, member}));
 		});
@@ -85,7 +84,7 @@ function ChatIndex() {
 				<div className="text-container">
 					<Messages text={state.text} currentUser={state.member}/>
 				</div>
-				<Input onSendMessage={onSendMessage}/>
+				<SendMessageInput onSendMessage={onSendMessage}/>
 			</Col>
 			<Col xs={3}>
 				<ActiveUsers

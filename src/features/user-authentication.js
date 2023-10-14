@@ -29,7 +29,7 @@ export const UserAuthentication = {
 	},
 	getUsername() {
 		let username = localStorage.getItem(LS_USERNAME_KEY);
-		if(!username){
+		if (!username) {
 			username = UserAuthentication.promptUserToEnterName()
 		}
 		return username;
@@ -45,5 +45,8 @@ export const UserAuthentication = {
 			alert("Please enter a name to proceed.");
 			this.promptUserToEnterName();
 		}
+	},
+	getUserAvatar() {
+		return '/assets/images/placeholder.jpg';
 	}
 }

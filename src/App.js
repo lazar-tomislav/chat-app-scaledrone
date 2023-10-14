@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import Navigation from "./components/Navigation";
-import Footer from "./components/Footer";
+import FooterComponent from "./components/Footer";
 
 import Container from "react-bootstrap/Container";
 import ChatIndex from "./features/chat/ChatIndex";
@@ -14,7 +14,7 @@ function App() {
 				<Navigation/>
 
 				<ChatIndex/>
-				<Footer/>
+				<FooterComponent/>
 			</Container>
 		</div>
 	);

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 
-export default function Input({ onSendMessage }) {
+export default function SendMessageInput({ onSendMessage }) {
 	const [text, setText] = useState("");
 	const [showAlert, setShowAlert] = useState(false);
 
