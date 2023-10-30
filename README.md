@@ -1,11 +1,3 @@
-# Project resources
-
-## GitHub Repository:
-- https://github.com/herothezero90/react-chat-app/
-
-## Preview:
-- TODO: deploy to netlify or Vercel
-
 
 # How to start the project?
 
