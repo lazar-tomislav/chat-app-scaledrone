@@ -17,9 +17,7 @@ export default function Header() {
 	const signOut = ()=>{
 		setUsername('');
 		UserAuthentication.signOut();
-		//retry the prompt because user needs to be authenticated here
-		const username = UserAuthentication.getUsername();
-		setUsername(username);
+		window.location.href = "/";
 	}
 
 
